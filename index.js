@@ -1,7 +1,8 @@
 const genres = require("./routes/genres");
 // import genres from "./routes/genres";
 const express = require("express");
-const Joi = require("joi");
+// const Joi = require("joi");
+
 const app = express();
 const port = 3000;
 
