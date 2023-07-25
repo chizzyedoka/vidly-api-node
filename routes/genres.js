@@ -4,14 +4,14 @@ const router = express.Router(); // This is a mini express application
 const Joi = require("joi");
 const mongoose = require("mongoose");
 
-mongoose
-  .connect("mongodb://0.0.0.0:27017/vidyl-api-node", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Connected to MongoDB..."))
-  .catch((err) => console.error("Could not connect to MongoDB...", err));
+// mongoose
+//   .connect("mongodb://0.0.0.0:27017/vidyl-api-node", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log("Connected to MongoDB..."))
+//   .catch((err) => console.error("Could not connect to MongoDB...", err));
 
 const genreSchema = new mongoose.Schema({
   name: {
