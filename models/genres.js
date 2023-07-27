@@ -22,3 +22,4 @@ const validateGenre = (genre) => {
 
 module.exports.Genre = Genre;
 module.exports.validateG = validateGenre;
+module.exports.genreSchema = genreSchema;

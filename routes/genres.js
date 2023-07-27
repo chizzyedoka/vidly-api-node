@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router(); // This is a mini express application
-const Joi = require("joi");
-const mongoose = require("mongoose");
 const { Genre, validateG } = require("../models/genres");
 
 // endpoint to get all genres
