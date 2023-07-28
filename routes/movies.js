@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
   // create a new movie
   let movie = new Movie({
     title: req.body.title,
-    genre: { _id: genre._id, name: genre.name },
+    genre: { _id: genre._id, name: genre.name }, // only store the genre id and name
     numberInStock: req.body.numberInStock,
     dailyRentalRate: req.body.dailyRentalRate,
   });
