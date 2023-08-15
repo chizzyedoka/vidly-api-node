@@ -11,6 +11,11 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+// if (!config.get("jwtPrivateKey")) {
+//   console.error("FATAL ERROR: jwtPrivateKey is not defined");
+//   process.exit(1);
+// }
+
 mongoose
   .connect("mongodb://0.0.0.0:27017/vidyl-api-node", {
     useNewUrlParser: true,
