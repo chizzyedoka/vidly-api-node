@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
@@ -23,6 +24,15 @@ const userSchema = new mongoose.Schema({
     maxlength: 1000,
   },
 });
+
+// created method for userSchema
+userSchema.methods.generateAuthToken = function () {
+  const token = jwt.sign(
+    { _id: this._id, email: this.email },
+    process.env.PRIVATE_KEY
+  );
+  return token;
+};
 
 const complexityOptions = {
   min: 5,

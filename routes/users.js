@@ -29,10 +29,8 @@ router.post("/", async (req, res) => {
   user = await user.save();
 
   // create web token
-  const token = jwt.sign(
-    { _id: user._id, email: user.email },
-    process.env.PRIVATE_KEY
-  );
+  const token = user.generateAuthToken();
+
   // set header(headerName,value)
   res.header("x-auth-token", token);
   res.status(200).json(_.pick(user, ["name", "email", "_id"])); // doesn't send password to user
