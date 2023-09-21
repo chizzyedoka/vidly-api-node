@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router(); // This is a mini express application
 const { Genre, validateG } = require("../models/genres");
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
 
 // endpoint to get all genres
 router.get("/", async (req, res) => {
@@ -9,7 +11,7 @@ router.get("/", async (req, res) => {
 });
 
 // endpoint to add a genre
-router.post("/", async (req, res) => {
+router.post("/", auth, admin, async (req, res) => {
   const { value, error } = validateG(req.body);
   if (error) return res.status(400).send(error.details[0].message);
   let genre = new Genre({ name: req.body.name });
@@ -18,7 +20,7 @@ router.post("/", async (req, res) => {
 });
 
 // endpoint to update a genre
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, admin, async (req, res) => {
   // validate the course
   const { value, error } = validateG(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -33,10 +35,11 @@ router.put("/:id", async (req, res) => {
 });
 
 // endpoint to delete a genre
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, admin, async (req, res) => {
   const genre = await Genre.findByIdAndDelete(req.params.id);
   if (!genre)
     return res.status(404).send("The genre with the given ID was not found.");
+  console.log(req.user);
   res.send(genre);
 });
 
